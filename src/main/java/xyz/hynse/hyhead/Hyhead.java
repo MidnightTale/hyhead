@@ -37,7 +37,6 @@ public final class Hyhead extends JavaPlugin implements Listener {
         } else if (cmd.getName().equalsIgnoreCase("detach")) {
             if (sender instanceof Player player) {
                 dropPlayerHead(player);
-                player.setKiller(player);
                 player.setHealth(0);
             } else {
                 sender.sendMessage("Only players can use this command.");
