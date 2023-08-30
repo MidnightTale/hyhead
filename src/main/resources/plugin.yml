@@ -1,0 +1,14 @@
+name: hyhead
+version: '${version}'
+main: xyz.hynse.hyhead.Hyhead
+api-version: '1.20'
+authors: [MidnightTale]
+website: hynse.xyz
+folia-supported: true
+commands:
+  hydeathreload:
+    description: Reloads the Hyhead configuration
+    usage: /hyheadreload
+  detach:
+    description: Detach you head
+    usage: /detach
