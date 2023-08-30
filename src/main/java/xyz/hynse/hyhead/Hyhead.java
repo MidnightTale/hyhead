@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -61,7 +62,7 @@ public final class Hyhead extends JavaPlugin implements Listener {
             saveDefaultConfig();
         }
         FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
-        headDropChance = config.getDouble("head_drop_chance", 0.1);
+        headDropChance = config.getDouble("head_drop_chance", 0.7);
     }
 
     private boolean shouldDropHead() {
@@ -74,6 +75,6 @@ public final class Hyhead extends JavaPlugin implements Listener {
         skullMeta.setOwningPlayer(player);
         playerHead.setItemMeta(skullMeta);
 
-        player.getWorld().dropItemNaturally(player.getLocation(), playerHead);
+        player.getInventory().addItem(playerHead);
     }
 }
