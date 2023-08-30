@@ -1,10 +1,9 @@
 package xyz.hynse.hyhead;
-
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,6 +13,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.util.Random;
 
 public final class Hyhead extends JavaPlugin implements Listener {
@@ -22,7 +22,6 @@ public final class Hyhead extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        saveDefaultConfig();
         loadConfig();
         getServer().getPluginManager().registerEvents(this, this);
     }
@@ -57,7 +56,11 @@ public final class Hyhead extends JavaPlugin implements Listener {
     }
 
     private void loadConfig() {
-        FileConfiguration config = getConfig();
+        File configFile = new File(getDataFolder(), "config.yml");
+        if (!configFile.exists()) {
+            saveDefaultConfig();
+        }
+        FileConfiguration config = YamlConfiguration.loadConfiguration(configFile);
         headDropChance = config.getDouble("head_drop_chance", 0.1);
     }
 
